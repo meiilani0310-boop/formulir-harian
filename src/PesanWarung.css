@@ -1,0 +1,322 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+body {
+  background: #2f6f62;
+}
+
+/* Formulir Pesan Warung */
+.warung {
+  --tile: #2f6f62;
+  --tile2: #2a6457;
+  --red: #d9402b;
+  --sun: #f2b632;
+  --paper: #fbfaf7;
+  --ink: #262626;
+  --board: #fff6dc;
+
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Rubik", system-ui, sans-serif;
+  color: var(--ink);
+  background-color: var(--tile);
+  background-image:
+    linear-gradient(var(--tile2) 2px, transparent 2px),
+    linear-gradient(90deg, var(--tile2) 2px, transparent 2px);
+  background-size: 56px 56px;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.warung .wrap {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+/* Papan nama warung */
+.warung .sign {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  padding: 14px 10px 12px;
+  margin: 0 -16px 26px;
+  border-bottom: 6px solid var(--sun);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.18);
+}
+.warung .sign h1 {
+  margin: 0;
+  font-size: clamp(24px, 5vw, 38px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.warung .sign p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.warung .grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .warung .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Papan pesanan */
+.warung .board {
+  background: var(--board);
+  border: 4px solid var(--ink);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.warung .board h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+.warung .board .sub {
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+.warung label,
+.warung .lbl {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 16px 0 6px;
+}
+.warung input[type="text"] {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.warung .menu {
+  display: grid;
+  gap: 8px;
+}
+.warung .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.warung .item.has {
+  background: var(--sun);
+}
+.warung .item .n {
+  flex: 1;
+  font-size: 15px;
+}
+.warung .item .n small {
+  display: block;
+  color: #555;
+  font-size: 12px;
+}
+.warung .item.has .n small {
+  color: #3a2c00;
+}
+
+.warung .step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.warung .step button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  font-weight: 700;
+}
+.warung .step button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.warung .step output {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.warung .seg {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.warung .seg button {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+.warung .seg button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--board);
+}
+.warung .seg button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.warung .go {
+  margin-top: 20px;
+  width: 100%;
+  font: inherit;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 14px;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  background: var(--red);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.warung .go:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+.warung .go:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.warung button:focus-visible,
+.warung input:focus-visible {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+}
+.warung .msg {
+  min-height: 20px;
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #a3260f;
+  font-weight: 500;
+}
+
+/* Struk */
+.warung .rcpt-col {
+  position: sticky;
+  top: 12px;
+}
+@media (max-width: 760px) {
+  .warung .rcpt-col {
+    position: static;
+  }
+}
+.warung .printer {
+  height: 12px;
+  background: var(--ink);
+  border-radius: 8px 8px 0 0;
+  margin: 0 -6px;
+}
+.warung .rcpt {
+  background: var(--paper);
+  font-family: "Courier Prime", monospace;
+  font-size: 14px;
+  padding: 18px 16px 30px;
+  margin: 0 6px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 14px 100%;
+  animation: warung-print 0.7s ease-out;
+}
+@keyframes warung-print {
+  from { transform: translateY(-30px); opacity: 0.3; }
+  to { transform: none; opacity: 1; }
+}
+.warung .rcpt h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 17px;
+}
+.warung .rcpt .c {
+  text-align: center;
+  margin: 2px 0;
+}
+.warung .rcpt hr {
+  border: 0;
+  border-top: 2px dashed #888;
+  margin: 10px 0;
+}
+.warung .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 3px 0;
+}
+.warung .row span:first-child {
+  flex: 1;
+}
+.warung .empty {
+  text-align: center;
+  color: #777;
+  margin: 14px 0;
+}
+.warung .tot {
+  font-weight: 700;
+  font-size: 16px;
+}
+.warung .q {
+  text-align: center;
+  margin: 14px 0 4px;
+}
+.warung .q b {
+  display: block;
+  font-size: 34px;
+  letter-spacing: 2px;
+}
+.warung .again {
+  margin-top: 14px;
+  width: 100%;
+  font: inherit;
+  font-weight: 500;
+  padding: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .warung *,
+  .warung *::before,
+  .warung *::after {
+    animation: none !important;
+    transition-duration: 0.01s !important;
+  }
+}
